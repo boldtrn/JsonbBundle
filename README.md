@@ -18,12 +18,8 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require <package-name> "~1"
+$ composer require "boldtrn/jsonb-bundle": "dev-master"
 ```
-
-This command requires you to have Composer installed globally, as explained
-in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
-of the Composer documentation.
 
 Step 2: Enable the Bundle
 -------------------------
@@ -43,7 +39,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new <vendor>\<bundle-name>\<bundle-long-name>(),
+            new Boldtrn\JsonbBundle\JsonbBundle(),
         );
 
         // ...
@@ -51,4 +47,24 @@ class AppKernel extends Kernel
 
     // ...
 }
+```
+
+Step 3: Add the new Types and Functions to the Config
+-------------------------
+
+```
+# config.yml
+doctrine:
+    dbal:
+        types:
+          jsonb: AppBundle\Types\JsonbArrayType
+        mapping_types:
+          jsonb: jsonb
+    orm:
+        dql:
+            string_functions:
+                JSONB_CONTAINS:   AppBundle\Query\JsonbContains
+                JSONB_LIKE:       AppBundle\Query\JsonbLike
+
+
 ```
