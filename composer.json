@@ -2,6 +2,15 @@
   "name": "boldtrn/jsonb-bundle",
   "license": "MIT",
   "type": "symfony-bundle",
+  "description": "A Symfyon2 Bundle to extend the Doctrine2 functionality to the Postgresql type: Jsonb",
+  "keywords": [
+    "jsonb",
+    "doctrine",
+    "symfony",
+    "bundle",
+    "postgresql"
+  ],
+  "homepage": "https://github.com/boldtrn/JsonbBundle",
   "autoload": {
     "psr-4": {
       "Boldtrn\\JsonbBundle\\": ""
@@ -38,12 +47,12 @@
     "post-install-cmd": [
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
     ],
     "post-update-cmd": [
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
     ]
   },
   "config": {
@@ -52,6 +61,6 @@
   "extra": {
     "symfony-app-dir": "app",
     "symfony-web-dir": "web",
-    "symfony-assets-install": "relative",
+    "symfony-assets-install": "relative"
   }
 }
