@@ -6,7 +6,9 @@ Please make sure you have Postgresql with a version of at least 9.4 installed be
 The Bundle allows to create Jsonb fields and use the Contains and the Like operator on the Jsonb field.
 Other Operations can be easily added.
 However, at the moment I don't need more.
-Feel free to create a PR.
+Feel free to create a PR or ask me ;).
+
+The Bundle is stable but the Query functions are a bit inconvenient.
 
 Installation
 ============
@@ -57,14 +59,81 @@ Step 3: Add the new Types and Functions to the Config
 doctrine:
     dbal:
         types:
-          jsonb: AppBundle\Types\JsonbArrayType
+          jsonb: Boldtrn\JsonbBundle\Types\JsonbArrayType
         mapping_types:
           jsonb: jsonb
     orm:
         dql:
             string_functions:
-                JSONB_CONTAINS:   AppBundle\Query\JsonbContains
-                JSONB_LIKE:       AppBundle\Query\JsonbLike
+                JSONB_CONTAINS:   Boldtrn\JsonbBundle\Query\JsonbContains
+                JSONB_LIKE:       Boldtrn\JsonbBundle\Query\JsonbLike
 
 
+```
+
+Step 4: Create a Entity and Use the Jsonb Type
+-------------------------
+
+```
+/**
+ * @Entity
+ */
+class Test
+{
+
+    /**
+     * @Id
+     * @Column(type="string")
+     * @GeneratedValue
+     */
+    public $id;
+
+    /**
+     * @Column(type="jsonb")
+     *
+     * Usually attrs is an array, depends on you
+     *
+     */
+    public $attrs;
+
+}
+```
+
+Step 5: Write a Repository Method that queries for the jsonb 
+-------------------------
+
+This example shows how to use the contains statement in a WHERE clause. 
+The `= TRUE` is a workaround for Doctrine that needs an comparison operator in the WHERE clause.
+
+```
+$q = $this
+            ->entityManager
+            ->createQuery(
+                "
+        SELECT t
+        FROM E:Test t
+        WHERE JSONB_CONTAINS(t.attrs, 'value') = TRUE
+        "
+            );
+```            
+
+This example shows how to query for a value that is LIKE `%d%`
+The result could be data like:
+ ```
+  id |                 attrs                 
+ ----+--------------------------------------
+   4 | {"a": 1, "b": {"c": "abcdefg", "e": true}}
+ ```
+
+
+```
+        $q = $this
+            ->entityManager
+            ->createQuery(
+                "
+        SELECT t
+        FROM E:Test t
+        WHERE JSONB_LIKE(t.attrs , '{\"b\",\"c\"}') LIKE '%d%'
+        "
+            );
 ```
