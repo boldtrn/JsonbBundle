@@ -11,7 +11,7 @@ before_script:
   - composer install -n --no-interaction
 
 script:
-  - phpunit -c app
+  - phpunit
 
 notifications:
   email: boldtrn@gmail.com
