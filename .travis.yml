@@ -9,5 +9,8 @@ sudo: false
 
 install: composer install
 
+script:
+    - ./bin/phpunit -c app/
+
 notifications:
   email: boldtrn@gmail.com
