@@ -10,6 +10,8 @@ Feel free to create a PR or ask me ;).
 
 The Bundle is stable but the Query functions are a bit inconvenient.
 
+[![Build Status](https://travis-ci.org/boldtrn/JsonbBundle.svg?branch=master)](https://travis-ci.org/boldtrn/JsonbBundle)
+
 Installation
 ============
 
