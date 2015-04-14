@@ -1,0 +1,16 @@
+{
+  "name": "boldtrn/jsonb-bundle",
+  "license": "MIT",
+  "type": "symfony-bundle",
+  "autoload": {
+    "psr-4": {
+      "Boldtrn\\JsonbBundle\\": ""
+    }
+  },
+  "authors": [
+    {
+      "name": "Robin Boldt",
+      "email": "boldtrn@gmail.com"
+    }
+  ]
+}
