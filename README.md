@@ -1,3 +1,13 @@
+JsonbBundle
+============
+
+This Symfony2 Bundle extends Doctrine to use the `jsonb` Datatype that ships with Postgresql 9.4.
+Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
+The Bundle allows to create Jsonb fields and use the Contains and the Like operator on the Jsonb field.
+Other Operations can be easily added.
+However, at the moment I don't need more.
+Feel free to create a PR.
+
 Installation
 ============
 

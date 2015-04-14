@@ -22,7 +22,7 @@ class JsonbLikeTest extends BaseTest
                 "
         SELECT t
         FROM E:Test t
-        WHERE JSONB_LIKE(t.attrs, '{\"object1\",\"object2\"}') LIKE '%a%'
+        WHERE JSONB_LIKE(t.attrs , '{\"object1\",\"object2\"}') LIKE '%a%'
         "
             );
 
