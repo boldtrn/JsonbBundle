@@ -7,9 +7,6 @@ env:
   - DB=pgsql
   - SYMFONY_VERSION=2.6.*
 
-addons:
-  postgresql: "9.3"
-
 before_script:
   - psql -c 'create database jsonb_test;' -U postgres
   - composer install -n --no-interaction --prefer-source
