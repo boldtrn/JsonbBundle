@@ -9,11 +9,10 @@ env:
 
 before_script:
   - composer self-update
-  - composer require symfony/symfony:${SYMFONY_VERSION} --prefer-source
-  - composer install
+  - composer install -n --no-interaction
 
 script:
-  - bin/phpunit -c app
+  - bin/phpunit -c app -v --debug
 
 notifications:
   email: boldtrn@gmail.com
