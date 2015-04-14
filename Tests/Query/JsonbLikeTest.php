@@ -26,10 +26,17 @@ class JsonbLikeTest extends BaseTest
         "
             );
 
+        $expectedSQL = "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs #>> '{\"object1\",\"object2\"}') LIKE '%a%'";
+
+        $expectedSQL = str_replace("_", "", $expectedSQL);
+
+        $actualSQL =  str_replace("_", "", $q->getSql());
+
         $this->assertEquals(
-            "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs #>> '{\"object1\",\"object2\"}') LIKE '%a%'",
-            $q->getSql()
+            $expectedSQL,
+            $actualSQL
         );
+
     }
 
 }
