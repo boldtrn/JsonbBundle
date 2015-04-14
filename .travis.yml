@@ -12,7 +12,7 @@ addons:
 
 before_script:
   - psql -c 'create database jsonb_test;' -U postgres
-  - composer install -n --no-interaction
+  - composer install -n --no-interaction --prefer-source
 
 script:
   - phpunit
