@@ -16,8 +16,7 @@ class JsonbLike extends FunctionNode
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
         $this->identifier = $parser->ArithmeticPrimary();
-        $parser->match(Lexer::T_NONE);
-        $parser->match(Lexer::T_GREATER_THAN);
+        $parser->match(Lexer::T_COMMA);
         $this->value = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
@@ -25,7 +24,7 @@ class JsonbLike extends FunctionNode
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
         return '(' .
-        $this->identifier->dispatch($sqlWalker) . ' #> ' .
+        $this->identifier->dispatch($sqlWalker) . ' #>> ' .
         $this->value->dispatch($sqlWalker) .
         ')';
     }
