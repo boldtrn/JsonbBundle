@@ -7,15 +7,7 @@ env:
   - DB=pgsql
   - SYMFONY_VERSION=2.6.*
 
-matrix:
-  include:
-    - php: 5.5
-      env:
-        - SYMFONY_VERSION=2.6.*
-        - DB=pgsql
-
 before_script:
-  - composer self-update
   - composer install -n --no-interaction
 
 script:
