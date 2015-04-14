@@ -26,9 +26,15 @@ class JsonbContainsTest extends BaseTest
         "
             );
 
+        $expectedSQL = "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'value') = true";
+
+        $expectedSQL = str_replace("_", "", $expectedSQL);
+
+        $actualSQL =  str_replace("_", "", $q->getSql());
+
         $this->assertEquals(
-            "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'value') = true",
-            $q->getSql()
+            $expectedSQL,
+            $actualSQL
         );
     }
 
