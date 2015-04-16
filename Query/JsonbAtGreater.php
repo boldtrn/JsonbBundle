@@ -9,23 +9,25 @@ use Doctrine\ORM\Query\Lexer;
 /**
  * Class JsonbContains
  *
- * JsonbContains ::= "JSONB_CONTAINS" "(" EntityField "," ContainsExpression ")"
+ * JsonbAtGreater ::= "JSONB_AG" "(" LeftHandSide "," RightHandSide ")"
+ *
+ * This will be converted to: "( LeftHandSide @> RightHandSide )"
  *
  * @package Boldtrn\JsonbBundle\Query
  * @author Robin Boldt <boldtrn@gmail.com>
  */
-class JsonbContains extends FunctionNode
+class JsonbAtGreater extends FunctionNode
 {
-    public $identifier = null;
-    public $value = null;
+    public $leftHandSide = null;
+    public $rightHandSide = null;
 
     public function parse(\Doctrine\ORM\Query\Parser $parser)
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        $this->identifier = $parser->ArithmeticPrimary();
+        $this->leftHandSide = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_COMMA);
-        $this->value = $parser->ArithmeticPrimary();
+        $this->rightHandSide = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
@@ -33,8 +35,8 @@ class JsonbContains extends FunctionNode
     {
         // We use a workaround to allow this statement in a WHERE. Doctrine relies on the existence of an ComparisonOperator
         return '(' .
-        $this->identifier->dispatch($sqlWalker) . ' @> ' .
-        $this->value->dispatch($sqlWalker) .
+        $this->leftHandSide->dispatch($sqlWalker) . ' @> ' .
+        $this->rightHandSide->dispatch($sqlWalker) .
         ')';
     }
 }

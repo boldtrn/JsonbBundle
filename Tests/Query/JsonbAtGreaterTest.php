@@ -11,7 +11,7 @@ namespace Boldtrn\JsonbBundle\Tests\Query;
 
 use Boldtrn\JsonbBundle\Tests\BaseTest;
 
-class JsonbLikeTest extends BaseTest
+class JsonbAtGreaterTest extends BaseTest
 {
 
     public function testContains()
@@ -22,11 +22,11 @@ class JsonbLikeTest extends BaseTest
                 "
         SELECT t
         FROM E:Test t
-        WHERE JSONB_LIKE(t.attrs , '{\"object1\",\"object2\"}') LIKE '%a%'
+        WHERE JSONB_AG(t.attrs, 'value') = TRUE
         "
             );
 
-        $expectedSQL = "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs #>> '{\"object1\",\"object2\"}') LIKE '%a%'";
+        $expectedSQL = "SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'value') = true";
 
         $expectedSQL = str_replace("_", "", $expectedSQL);
 
@@ -36,7 +36,6 @@ class JsonbLikeTest extends BaseTest
             $expectedSQL,
             $actualSQL
         );
-
     }
 
 }

@@ -68,7 +68,8 @@ doctrine:
         dql:
             string_functions:
                 JSONB_CONTAINS:   Boldtrn\JsonbBundle\Query\JsonbContains
-                JSONB_LIKE:       Boldtrn\JsonbBundle\Query\JsonbLike
+                JSONB_HGG:       Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
+                
 
 
 ```
@@ -96,7 +97,7 @@ class Test
      * Usually attrs is an array, depends on you
      *
      */
-    public $attrs;
+    public $attrs = array();
 
 }
 ```
@@ -135,7 +136,7 @@ The result could be data like:
                 "
         SELECT t
         FROM E:Test t
-        WHERE JSONB_LIKE(t.attrs , '{\"b\",\"c\"}') LIKE '%d%'
+        WHERE JSONB_HGG(t.attrs , '{\"b\",\"c\"}') LIKE '%d%'
         "
             );
 ```

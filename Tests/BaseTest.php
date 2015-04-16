@@ -28,8 +28,8 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase {
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver(__DIR__ . '/Entities'));
         $config->addEntityNamespace('E', 'Boldtrn\JsonbBundle\Tests\Entities');
         $config->setCustomStringFunctions(array(
-            'JSONB_CONTAINS'         => 'Boldtrn\JsonbBundle\Query\JsonbContains',
-            'JSONB_LIKE'         => 'Boldtrn\JsonbBundle\Query\JsonbLike',
+            'JSONB_AG'         => 'Boldtrn\JsonbBundle\Query\JsonbAtGreater',
+            'JSONB_HGG'         => 'Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater',
         ));
 
         $dbParams = array(
