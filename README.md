@@ -3,7 +3,7 @@ JsonbBundle
 
 This Symfony2 Bundle extends Doctrine to use the `jsonb` Datatype that ships with Postgresql 9.4.
 Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
-The Bundle allows to create Jsonb fields and use the Contains and the Like operator on the Jsonb field.
+The Bundle allows to create Jsonb fields and use the `@>` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
 However, at the moment I don't need more.
 Feel free to create a PR or ask me ;).
@@ -67,8 +67,8 @@ doctrine:
     orm:
         dql:
             string_functions:
-                JSONB_CONTAINS:   Boldtrn\JsonbBundle\Query\JsonbContains
-                JSONB_HGG:       Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
+                JSONB_AG:   Boldtrn\JsonbBundle\Query\JsonbAtGreater
+                JSONB_HGG:  Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
                 
 
 
@@ -115,10 +115,15 @@ $q = $this
                 "
         SELECT t
         FROM E:Test t
-        WHERE JSONB_CONTAINS(t.attrs, 'value') = TRUE
+        WHERE JSONB_AG(t.attrs, 'value') = TRUE
         "
             );
 ```            
+
+This produces the following Query:
+```
+SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'value') = true
+```
 
 This example shows how to query for a value that is LIKE `%d%`
 The result could be data like:
@@ -139,4 +144,9 @@ The result could be data like:
         WHERE JSONB_HGG(t.attrs , '{\"b\",\"c\"}') LIKE '%d%'
         "
             );
+```
+
+This produces the following Query:
+```
+SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs #>> '{\"object1\",\"object2\"}') LIKE '%a%'
 ```
