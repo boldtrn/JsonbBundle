@@ -24,7 +24,7 @@ class JsonbArrayType extends JsonArrayType
      */
     public function getName()
     {
-        return 'jsonb_array';
+        return 'jsonb';
     }
 
 }

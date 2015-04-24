@@ -3,10 +3,6 @@ language: php
 php:
   - 5.5
 
-env:
-  - DB=pgsql
-  - SYMFONY_VERSION=2.6.*
-
 before_script:
   - psql -c 'create database jsonb_test;' -U postgres
   - composer install -n --no-interaction --prefer-source
