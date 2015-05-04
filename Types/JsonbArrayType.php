@@ -27,4 +27,16 @@ class JsonbArrayType extends JsonArrayType
         return 'jsonb';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        if (null === $value || empty($value)) {
+            return null;
+        }
+
+        return json_encode($value);
+    }
+
 }
