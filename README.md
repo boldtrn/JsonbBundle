@@ -5,10 +5,11 @@ This Symfony2 Bundle extends Doctrine to use the `jsonb` Datatype that ships wit
 Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
 The Bundle allows to create Jsonb fields and use the `@>` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
-However, at the moment I don't need more.
-Feel free to create a PR or ask me ;).
 
-The Bundle is stable but the Query functions are a bit inconvenient.
+I recently discovered the power of NativeQueries (http://doctrine-orm.readthedocs.org/en/latest/reference/native-sql.html).
+Right now I only use NativeQueries when querying. An example is shown below.
+
+The Bundle is stable.
 
 [![Build Status](https://travis-ci.org/boldtrn/JsonbBundle.svg?branch=master)](https://travis-ci.org/boldtrn/JsonbBundle)
 
@@ -101,8 +102,24 @@ class Test
 
 }
 ```
+Step 5.1: Write a Repository Method using a NativeQuery 
+-------------------------
 
-Step 5: Write a Repository Method that queries for the jsonb 
+```
+$q = $this
+            ->entityManager
+            ->createNativeQuery(
+                "
+        SELECT t.id, t.attrs
+        FROM Test t
+        WHERE t.attrs @> 'value'
+        "
+            , $rsm);
+```  
+
+You only need to setup the `$rsm` ResultSetMapping according to the Doctrine documentation.
+
+Step 5.2: Write a Repository Method that queries for the jsonb using the custom JSONB_FUNCTIONS 
 -------------------------
 
 This example shows how to use the contains statement in a WHERE clause. 
