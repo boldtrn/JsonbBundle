@@ -7,11 +7,11 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Lexer;
 
 /**
- * Class JsonbContains
+ * Class JsonbExistence
  *
- * JsonbAtGreater ::= "JSONB_AG" "(" LeftHandSide "," RightHandSide ")"
+ * JsonbAtGreater ::= "JSONB_EX" "(" LeftHandSide "," RightHandSide ")"
  *
- * This will be converted to: "( LeftHandSide @> RightHandSide )"
+ * This will be converted to: "( LeftHandSide ? RightHandSide )"
  *
  * @package Boldtrn\JsonbBundle\Query
  * @author Robin Boldt <boldtrn@gmail.com>
@@ -34,9 +34,9 @@ class JsonbExistence extends FunctionNode
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
         // We use a workaround to allow this statement in a WHERE. Doctrine relies on the existence of an ComparisonOperator
-        return '(' .
-        $this->leftHandSide->dispatch($sqlWalker) . ' ? ' .
-        $this->rightHandSide->dispatch($sqlWalker) .
+        return '('.
+        $this->leftHandSide->dispatch($sqlWalker).' ? '.
+        $this->rightHandSide->dispatch($sqlWalker).
         ')';
     }
 }

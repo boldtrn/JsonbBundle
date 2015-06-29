@@ -14,7 +14,7 @@ use Boldtrn\JsonbBundle\Tests\BaseTest;
 class JsonbExistenceTest extends BaseTest
 {
 
-    public function testContains()
+    public function testExistence()
     {
         $q = $this
             ->entityManager
