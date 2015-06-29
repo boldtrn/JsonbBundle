@@ -30,6 +30,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase {
         $config->setCustomStringFunctions(array(
             'JSONB_AG'         => 'Boldtrn\JsonbBundle\Query\JsonbAtGreater',
             'JSONB_HGG'         => 'Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater',
+            'JSONB_EX'         => 'Boldtrn\JsonbBundle\Query\JsonbExistence',
         ));
 
         $dbParams = array(

@@ -70,6 +70,7 @@ doctrine:
             string_functions:
                 JSONB_AG:   Boldtrn\JsonbBundle\Query\JsonbAtGreater
                 JSONB_HGG:  Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
+                JSONB_EX:   Boldtrn\JsonbBundle\Query\JsonbExistence
                 
 
 
