@@ -3,7 +3,7 @@ JsonbBundle
 
 This Symfony2 Bundle extends Doctrine to use the `jsonb` Datatype that ships with Postgresql 9.4.
 Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
-The Bundle allows to create Jsonb fields and use the `@>` and the `#>>` operator on the Jsonb field.
+The Bundle allows to create Jsonb fields and use the `@>`,`?` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
 
 I recently discovered the power of NativeQueries (http://doctrine-orm.readthedocs.org/en/latest/reference/native-sql.html).
