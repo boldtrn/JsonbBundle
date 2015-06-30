@@ -26,15 +26,11 @@ class JsonbExistenceTest extends BaseTest
         "
             );
 
-        var_dump($q);
-
         $expectedSQL = "SELECT t0.id AS id0, t0.attrs AS attrs1 FROM Test t0 WHERE ((t0.attrs -> 'value') IS NOT NULL) = true";
 
         $expectedSQL = str_replace("_", "", $expectedSQL);
 
         $actualSQL =  str_replace("_", "", $q->getSql());
-
-        var_dump($actualSQL);
 
         $this->assertEquals(
             $expectedSQL,
