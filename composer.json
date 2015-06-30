@@ -1,8 +1,8 @@
 {
   "name": "boldtrn/jsonb-bundle",
   "license": "MIT",
-  "type": "symfony-bundle",
-  "description": "A Symfyon2 Bundle to extend the Doctrine2 functionality to the Postgresql type: Jsonb",
+  "type": "library",
+  "description": "A library adding the support for JSONB columns of PostgreSQL to Doctrine.",
   "keywords": [
     "jsonb",
     "doctrine",
@@ -24,41 +24,12 @@
   ],
   "require": {
     "php": ">=5.3.3",
-    "symfony/symfony": "2.6.*",
-    "doctrine/orm": ">2.4,<2.6",
-    "doctrine/dbal": ">2.4,<2.6",
-    "doctrine/doctrine-bundle": "~1.2",
-    "symfony/assetic-bundle": "~2.3",
-    "symfony/monolog-bundle": "~2.4",
-    "sensio/distribution-bundle": "~3.0,>=3.0.12",
-    "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-    "incenteev/composer-parameter-handler": "~2.0"
+    "doctrine/dbal": "~2.4"
+  },
+  "suggest": {
+    "doctrine/orm": "To use DQL functions"
   },
   "require-dev": {
-    "sensio/generator-bundle": "~2.3",
     "phpunit/phpunit": ">4.2"
-  },
-  "scripts": {
-    "post-root-package-install": [
-      "SymfonyStandard\\Composer::hookRootPackageInstall"
-    ],
-    "post-install-cmd": [
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
-    ],
-    "post-update-cmd": [
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
-    ]
-  },
-  "config": {
-    "bin-dir": "bin"
-  },
-  "extra": {
-    "symfony-app-dir": "app",
-    "symfony-web-dir": "web",
-    "symfony-assets-install": "relative"
   }
 }
