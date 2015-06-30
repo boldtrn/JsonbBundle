@@ -6,6 +6,11 @@ Please make sure you have Postgresql with a version of at least 9.4 installed be
 The Bundle allows to create Jsonb fields and use the `@>`,`?` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
 
+The `?` operator is currently implemented as a workaround, since Doctrine expects `?` to be a parameter. Therefore, I use the following `WHERE` function: 
+ ```
+ WHERE  (t.attrs->\'YOUR_KEY\') IS NOT NULL
+ ```
+
 I recently discovered the power of NativeQueries (http://doctrine-orm.readthedocs.org/en/latest/reference/native-sql.html).
 Right now I only use NativeQueries when querying. An example is shown below.
 

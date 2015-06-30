@@ -9,9 +9,9 @@ use Doctrine\ORM\Query\Lexer;
 /**
  * Class JsonbExistence
  *
- * JsonbAtGreater ::= "JSONB_EX" "(" LeftHandSide "," RightHandSide ")"
+ * JsonbExistence ::= "JSONB_EX" "(" LeftHandSide "," RightHandSide ")"
  *
- * This will be converted to: "( LeftHandSide ? RightHandSide )"
+ * This will be converted to: "(t0.attrs -> 'value') IS NOT NULL"
  *
  * @package Boldtrn\JsonbBundle\Query
  * @author Robin Boldt <boldtrn@gmail.com>
@@ -35,8 +35,8 @@ class JsonbExistence extends FunctionNode
     {
         // We use a workaround to allow this statement in a WHERE. Doctrine relies on the existence of an ComparisonOperator
         return '('.
-        $this->leftHandSide->dispatch($sqlWalker).' ? '.
+        $this->leftHandSide->dispatch($sqlWalker).' -> '.
         $this->rightHandSide->dispatch($sqlWalker).
-        ')';
+        ') IS NOT NULL';
     }
 }
