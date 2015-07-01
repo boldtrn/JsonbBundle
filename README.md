@@ -6,6 +6,8 @@ Please make sure you have Postgresql with a version of at least 9.4 installed be
 The Bundle allows to create Jsonb fields and use the `@>`,`?` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
 
+The `?` operator is implemented by calling its function `jsonb_exists(column_name, value)` since Doctrine will consider it a parameter placeholder otherwise. The same must be done if you want to implement `?|` and `?&` operators, using `jsonb_exists_any(column_name, value)` and `jsonb_exists_all(column_name, value)` respectively
+
 I recently discovered the power of NativeQueries (http://doctrine-orm.readthedocs.org/en/latest/reference/native-sql.html).
 Right now I only use NativeQueries when querying. An example is shown below.
 
