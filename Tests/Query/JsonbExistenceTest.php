@@ -26,7 +26,7 @@ class JsonbExistenceTest extends BaseTest
         "
             );
 
-        $expectedSQL = "SELECT t0.id AS id0, t0.attrs AS attrs1 FROM Test t0 WHERE (t0.attrs ? 'value') = true";
+        $expectedSQL = "SELECT t0.id AS id0, t0.attrs AS attrs1 FROM Test t0 WHERE jsonb_exists(t0.attrs, 'value') = true";
 
         $expectedSQL = str_replace("_", "", $expectedSQL);
 
