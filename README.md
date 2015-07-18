@@ -1,15 +1,14 @@
 JsonbBundle
 ============
 
-This Symfony2 Bundle extends Doctrine to use the `jsonb` Datatype that ships with Postgresql 9.4.
+This bundle extends Doctrine to use the `jsonb` datatype that ships with Postgresql 9.4.
+This bundle is fully compatible with Symfony, but you do not have to use Symfony (see the `composer.json` for dependencies).
 Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
 The Bundle allows to create Jsonb fields and use the `@>`,`?` and the `#>>` operator on the Jsonb field.
 Other Operations can be easily added.
 
 I recently discovered the power of NativeQueries (http://doctrine-orm.readthedocs.org/en/latest/reference/native-sql.html).
 Right now I only use NativeQueries when querying. An example is shown below.
-
-The Bundle is stable.
 
 [![Build Status](https://travis-ci.org/boldtrn/JsonbBundle.svg?branch=master)](https://travis-ci.org/boldtrn/JsonbBundle)
 
@@ -26,35 +25,7 @@ following command to download the latest stable version of this bundle:
 $ composer require "boldtrn/jsonb-bundle": "dev-master"
 ```
 
-Step 2: Enable the Bundle
--------------------------
-
-Then, enable the bundle by adding the following line in the `app/AppKernel.php`
-file of your project:
-
-```php
-<?php
-// app/AppKernel.php
-
-// ...
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-
-            new Boldtrn\JsonbBundle\JsonbBundle(),
-        );
-
-        // ...
-    }
-
-    // ...
-}
-```
-
-Step 3: Add the new Types and Functions to the Config
+Step 2: Add the new Types and Functions to the Config
 -------------------------
 
 ```
@@ -76,7 +47,7 @@ doctrine:
 
 ```
 
-Step 4: Create a Entity and Use the Jsonb Type
+Step 3: Create a Entity and Use the Jsonb Type
 -------------------------
 
 ```
@@ -103,7 +74,7 @@ class Test
 
 }
 ```
-Step 5.1: Write a Repository Method using a NativeQuery 
+Step 4.1: Write a Repository Method using a NativeQuery 
 -------------------------
 
 ```
@@ -120,7 +91,7 @@ $q = $this
 
 You only need to setup the `$rsm` ResultSetMapping according to the Doctrine documentation.
 
-Step 5.2: Write a Repository Method that queries for the jsonb using the custom JSONB_FUNCTIONS 
+Step 4.2: Write a Repository Method that queries for the jsonb using the custom JSONB_FUNCTIONS 
 -------------------------
 
 This example shows how to use the contains statement in a WHERE clause. 
