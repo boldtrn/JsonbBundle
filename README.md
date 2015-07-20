@@ -44,7 +44,7 @@ doctrine:
                 JSONB_EX:   Boldtrn\JsonbBundle\Query\JsonbExistence
 ```
 
-Note: There were people having issues with the above configuration. The had the following exception: 
+Note: There were people having issues with the above configuration. They had the following exception: 
 ```
 [Symfony\Component\Config\Definition\Exception\InvalidConfigurationException]  
   Unrecognized options "dql" under "doctrine.orm" 
