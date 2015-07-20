@@ -22,7 +22,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require "boldtrn/jsonb-bundle": "dev-master"
+$ composer require "boldtrn/jsonb-bundle": "~1.0"
 ```
 
 Step 2: Add the new Types and Functions to the Config
@@ -42,9 +42,20 @@ doctrine:
                 JSONB_AG:   Boldtrn\JsonbBundle\Query\JsonbAtGreater
                 JSONB_HGG:  Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
                 JSONB_EX:   Boldtrn\JsonbBundle\Query\JsonbExistence
-                
+```
 
+Note: There were people having issues with the above configuration. The had the following exception: 
+```
+[Symfony\Component\Config\Definition\Exception\InvalidConfigurationException]  
+  Unrecognized options "dql" under "doctrine.orm" 
+```
 
+This was fixed by changing the dql part in the following (add the `entity_managers` between `orm` and `dql`):
+```
+doctrine:
+    orm:
+        entity_managers:
+            dql:
 ```
 
 Step 3: Create a Entity and Use the Jsonb Type
