@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 
 /**
- * @Entity
+ * @Entity()
  */
 class Test
 {
@@ -18,11 +18,35 @@ class Test
      * @Column(type="string")
      * @GeneratedValue
      */
-    public $id;
+    protected $id;
 
     /**
      * @Column(type="jsonb")
      */
-    public $attrs;
+    protected $attrs = array();
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttrs()
+    {
+        return $this->attrs;
+    }
+
+    /**
+     * @param mixed $attrs
+     */
+    public function setAttrs($attrs)
+    {
+        $this->attrs = $attrs;
+    }
 
 }
