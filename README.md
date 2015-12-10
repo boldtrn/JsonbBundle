@@ -22,7 +22,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require "boldtrn/jsonb-bundle": "~1.0"
+$ composer require "boldtrn/jsonb-bundle:~1.1"
 ```
 
 Step 2: Add the new Types and Functions to the Config
