@@ -1,6 +1,10 @@
 JsonbBundle
 ============
 
+**Doctrine implemented the `jsonb` datatype with Doctrine 2.5. I recommend using the official Doctrine implementation. If you cannot upgrade feel free to use this bundle. It still works for me in my current production setting. I will upgrade to the doctrine implementation at some point in time, as well.**
+**[Doctrine Mapping Matrix](http://doctrine-orm.readthedocs.org/projects/doctrine-dbal/en/latest/reference/types.html#mapping-matrix)**
+
+
 This bundle extends Doctrine to use the `jsonb` datatype that ships with Postgresql 9.4.
 This bundle is fully compatible with Symfony, but you do not have to use Symfony (see the `composer.json` for dependencies).
 Please make sure you have Postgresql with a version of at least 9.4 installed before using this bundle.
