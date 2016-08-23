@@ -1,7 +1,7 @@
 JsonbBundle
 ============
 
-**Doctrine implemented the `jsonb` datatype with Doctrine 2.5. I recommend using the official Doctrine implementation. If you cannot upgrade feel free to use this bundle. It still works for me in my current production setting. I will upgrade to the doctrine implementation at some point in time, as well.**
+**Doctrine implemented the `jsonb` datatype with Doctrine DBAL 2.6. I recommend using the official Doctrine implementation. If you cannot upgrade feel free to use this bundle. It still works for me in my current production setting. I will upgrade to the doctrine implementation at some point in time, as well.**
 **[Doctrine Mapping Matrix](http://doctrine-orm.readthedocs.org/projects/doctrine-dbal/en/latest/reference/types.html#mapping-matrix)**
 
 
