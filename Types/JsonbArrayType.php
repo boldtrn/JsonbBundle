@@ -2,14 +2,14 @@
 namespace Boldtrn\JsonbBundle\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\JsonArrayType;
+use Doctrine\DBAL\Types\JsonType;
 
 /**
  * Array Type which can be used to generate jsonb arrays. It uses the Doctrine JsonArrayType
  *
  * @author Robin Boldt <boldtrn@gmail.com>
  */
-class JsonbArrayType extends JsonArrayType
+class JsonbArrayType extends JsonType
 {
     /**
      * {@inheritdoc}
