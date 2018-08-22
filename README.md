@@ -32,7 +32,7 @@ $ composer require "boldtrn/jsonb-bundle:~1.1"
 Step 2: Add the new Types and Functions to the Config
 -------------------------
 
-```
+```yaml
 # config.yml
 doctrine:
     dbal:
@@ -55,7 +55,7 @@ Note: There were people having issues with the above configuration. They had the
 ```
 
 This was fixed by changing the dql part in the following (add the `entity_managers` between `orm` and `dql`):
-```
+```yaml
 doctrine:
     orm:
         entity_managers:
@@ -65,7 +65,7 @@ doctrine:
 Step 3: Create a Entity and Use the Jsonb Type
 -------------------------
 
-```
+```php
 /**
  * @Entity
  */
@@ -92,7 +92,7 @@ class Test
 Step 4.1: Write a Repository Method using a NativeQuery 
 -------------------------
 
-```
+```php
 $q = $this
             ->entityManager
             ->createNativeQuery(
@@ -112,7 +112,7 @@ Step 4.2: Write a Repository Method that queries for the jsonb using the custom 
 This example shows how to use the contains statement in a WHERE clause. 
 The `= TRUE` is a workaround for Doctrine that needs an comparison operator in the WHERE clause.
 
-```
+```php
 $q = $this
             ->entityManager
             ->createQuery(
@@ -125,7 +125,7 @@ $q = $this
 ```            
 
 This produces the following Query:
-```
+```SQL
 SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'value') = true
 ```
 
@@ -138,7 +138,7 @@ The result could be data like:
  ```
 
 
-```
+```php
         $q = $this
             ->entityManager
             ->createQuery(
@@ -151,7 +151,7 @@ The result could be data like:
 ```
 
 This produces the following Query:
-```
+```SQL
 SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs #>> '{\"object1\",\"object2\"}') LIKE '%a%'
 ```
 
