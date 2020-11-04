@@ -23,14 +23,21 @@
     }
   ],
   "require": {
-    "php": ">=5.3.3",
-    "doctrine/dbal": "~2.4"
+    "php": ">=7.1",
+    "doctrine/dbal": "~2.6"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit",
+    "martin-georgiev/postgresql-for-doctrine": "^0.12.0"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit"
   },
   "suggest": {
     "doctrine/orm": "To use DQL functions"
   },
   "require-dev": {
-    "doctrine/orm": ">2.4,<2.6",
+    "doctrine/orm": ">2.6",
     "phpunit/phpunit": "~4.2"
   }
 }
