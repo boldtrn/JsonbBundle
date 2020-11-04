@@ -46,12 +46,13 @@ doctrine:
                 JSONB_AG:   Boldtrn\JsonbBundle\Query\JsonbAtGreater
                 JSONB_HGG:  Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater
                 JSONB_EX:   Boldtrn\JsonbBundle\Query\JsonbExistence
+                JSONB_EX_ANY:   Boldtrn\JsonbBundle\Query\JsonbExistenceAny
 ```
 
-Note: There were people having issues with the above configuration. They had the following exception: 
+Note: There were people having issues with the above configuration. They had the following exception:
 ```
-[Symfony\Component\Config\Definition\Exception\InvalidConfigurationException]  
-  Unrecognized options "dql" under "doctrine.orm" 
+[Symfony\Component\Config\Definition\Exception\InvalidConfigurationException]
+  Unrecognized options "dql" under "doctrine.orm"
 ```
 
 This was fixed by changing the dql part in the following (add the `entity_managers` between `orm` and `dql`):
@@ -89,7 +90,7 @@ class Test
 
 }
 ```
-Step 4.1: Write a Repository Method using a NativeQuery 
+Step 4.1: Write a Repository Method using a NativeQuery
 -------------------------
 
 ```php
@@ -102,14 +103,14 @@ $q = $this
         WHERE t.attrs @> 'value'
         "
             , $rsm);
-```  
+```
 
 You only need to setup the `$rsm` ResultSetMapping according to the Doctrine documentation.
 
-Step 4.2: Write a Repository Method that queries for the jsonb using the custom JSONB_FUNCTIONS 
+Step 4.2: Write a Repository Method that queries for the jsonb using the custom JSONB_FUNCTIONS
 -------------------------
 
-This example shows how to use the contains statement in a WHERE clause. 
+This example shows how to use the contains statement in a WHERE clause.
 The `= TRUE` is a workaround for Doctrine that needs an comparison operator in the WHERE clause.
 
 ```php
@@ -122,7 +123,7 @@ $q = $this
         WHERE JSONB_AG(t.attrs, 'value') = TRUE
         "
             );
-```            
+```
 
 This produces the following Query:
 ```SQL
@@ -132,7 +133,7 @@ SELECT t0_.id AS id0, t0_.attrs AS attrs1 FROM Test t0_ WHERE (t0_.attrs @> 'val
 This example shows how to query for a value that is LIKE `%d%`
 The result could be data like:
  ```
-  id |                 attrs                 
+  id |                 attrs
  ----+--------------------------------------
    4 | {"a": 1, "b": {"c": "abcdefg", "e": true}}
  ```

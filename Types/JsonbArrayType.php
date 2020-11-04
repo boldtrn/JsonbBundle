@@ -26,7 +26,7 @@ class JsonbArrayType extends JsonType
     {
         return 'jsonb';
     }
-    
+
     /**
      * {@inheritdoc}
      */

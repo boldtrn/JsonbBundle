@@ -56,6 +56,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
                 'JSONB_AG' => 'Boldtrn\JsonbBundle\Query\JsonbAtGreater',
                 'JSONB_HGG' => 'Boldtrn\JsonbBundle\Query\JsonbHashGreaterGreater',
                 'JSONB_EX' => 'Boldtrn\JsonbBundle\Query\JsonbExistence',
+                'JSONB_EX_ANY' => 'Boldtrn\JsonbBundle\Query\JsonbExistenceAny',
             )
         );
 
